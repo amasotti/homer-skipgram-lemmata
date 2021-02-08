@@ -31,9 +31,9 @@ paths = Namespace(
 
 # Parameters for the Neural Network
 params = Namespace(
-    create_dataset=False,
-    window=5,
-    load_model=True,
+    create_dataset=True,
+    window=9,
+    load_model=False,
     # Currently not using the validation set so much, but still useful to avoid overfitting and run the scheduler.
     train_size=0.95,
     # Already shuffled when creating the dataset (both training and validation)
