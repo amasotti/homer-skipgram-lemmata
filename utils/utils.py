@@ -65,13 +65,13 @@ def print_test(model, words, w2i, i2w, epoch, save=False, n=10, metrics="cosine"
             fp.write("\n" + "="*20 + "\n")
 
 
-def tsne_reduction(embeddings, perplexity=20, metrics="euclidean"):
+def tsne_reduction(embeddings, perplexity, steps=5000, metrics="euclidean"):
     scaler = StandardScaler()
     tsne = TSNE(n_components=2,
                 perplexity=perplexity,
                 metric=metrics,
                 verbose=3,
-                n_iter=500)
+                n_iter=steps)
     vectors_tsne = tsne.fit_transform(embeddings)
     vectors_tsne = scaler.fit_transform(vectors_tsne)
     return vectors_tsne

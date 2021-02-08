@@ -110,7 +110,7 @@ def train_model(model, dataset, vocab, optimizer, scheduler, word2index, index2w
     # Loss
     losses_train = []
     losses_val = []
-    best_loss = [5]
+    best_loss = [2.42]
     # batch_counter = 0  # as x_axis in tensorboard
 
     for epoch in trange(params.epochs):

@@ -31,16 +31,16 @@ paths = Namespace(
 
 # Parameters for the Neural Network
 params = Namespace(
-    create_dataset=True,
-    window=9,
-    load_model=False,
+    create_dataset=False,
+    window=4,
+    load_model=True,
     # Currently not using the validation set so much, but still useful to avoid overfitting and run the scheduler.
     train_size=0.95,
     # Already shuffled when creating the dataset (both training and validation)
     shuffle=False,
     drop_last=True,
-    batch=1500,
-    epochs=40,
+    batch=50,
+    epochs=100,
     embeddings=300,
     neg_sample=10,
     lr=0.0001,  # automatically adjusted with the scheduler while training
@@ -141,7 +141,7 @@ train_model(model=model,
 if params.draw_tsne:
     embeddings = model.emb_context.weight.data.cpu()
     emb_tensors = tsne_reduction(
-        embeddings, perplexity=15, metrics="euclidean")
+        embeddings, perplexity=40, steps=4000, metrics="euclidean")
     dataframe = make_dataframe(emb_tensors, word2index)
     draw_tsne(df=dataframe,
               fp=paths.tsne_plot,
